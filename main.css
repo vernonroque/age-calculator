@@ -1,0 +1,71 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+.attribution { 
+    font-size: 11px; 
+    text-align: center; 
+}
+.attribution a { 
+    color: hsl(228, 45%, 44%); 
+}
+
+.img-container {
+    display:grid;
+    grid-template-columns: 9fr 1fr;
+    column-gap:5px;
+    width:100%;
+    outline: 2px solid red;
+}
+.img-container:hover{
+    cursor:pointer;
+}
+img {
+    background-color:purple;
+    border-radius: 50%;
+    text-align:center;
+    /* margin-right:50px; */
+    z-index:10;
+}
+/* Make sure to use pseudo elements with divs, spans, etc, 
+   anything that holds content */
+
+/* I couldn't use the pseudo element with the img tag because it was 
+   a self-closing tag */
+
+.img-container::before{ 
+    height: 2px;
+    content: " ";
+    background: black;
+    width: 100%;
+    /* left:0; */
+    transform:translateY(22px);
+    z-index:-10;
+}
+/* .img-container::after{ 
+ 
+    display:inline;
+    content: " hello";
+    background: white;
+    left:0;
+    z-index:1;
+} */
+
+input{
+    padding:10px;
+}
+.date-form{
+    padding-top:20px;
+    margin-bottom:10px;
+}
+.main-card{
+    display:flex;
+    justify-content:center;
+    flex-direction:column;
+    align-items:center;
+    margin: 0 auto;
+    margin-top:60px;
+    outline: red 2px solid;
+    width:85%;
+}
