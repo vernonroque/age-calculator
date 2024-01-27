@@ -87,18 +87,30 @@ const main =() => {
         const monthInput = $('.month').val();
         const yearInput = $('.year').val();
 
-        if(!dayInput)
-            //make the border of day input red 
+        if(!dayInput){
+             //make the border of day input red 
             //and show comment "This field is required"
             console.log("the field is required");
-        if(!monthInput)
-            //make the border of month input red 
-            //and show comment "This field is required"
+            $('.day').toggleClass('error');
+            $('.day').closest('div').toggleClass('error')
+        }
+           
+        if(!monthInput){
+             //make the border of month input red 
+             //and show comment "This field is required"
             console.log("the field is required");
-        if(!yearInput)
-            //make the border of year input red 
-            //and show comment "This field is required"
+            $('.month').toggleClass('error');
+            $('.month').closest('div').toggleClass('error');
+        }
+           
+        if(!yearInput){
+             //make the border of year input red 
+             //and show comment "This field is required"
             console.log("the field is required");
+            $('.year').toggleClass('error');
+            $('.year').closest('div').toggleClass('error');
+        }
+           
         
         if(dayInput && monthInput && yearInput){
             const [day,month,year] = calculateAge(dayInput,monthInput,yearInput);

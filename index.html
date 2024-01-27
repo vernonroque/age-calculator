@@ -14,17 +14,24 @@
 <div class = "main-card">
   <form class = date-form>
 
-    <label for = "day">Day</label>
-    <input class = "day" type = "text" name = "day" placeholder = "DD" />
-  
+    <div class = "day-container">
+      <label for = "day">Day</label>
+      <input class = "day" type = "text" name = "day" placeholder = "DD" required />
+    </div>
+   
+  <div class = "month-container">
     <label for = "month">Month</label>
-    <input class = "month" type = "text" name = "month" placeholder = "MM" />
-
+    <input class = "month" type = "text" name = "month" placeholder = "MM" required/>
+  </div>
+   
+  <div class = "year-container">
     <label for = "year">Year</label>
-    <input class = "year" type = "text" name = "year" placeholder = "YYYY" />
-    
+    <input class = "year" type = "text" name = "year" placeholder = "YYYY" required/>
+  </div>
+   
   </form>
-    <span class="img-container"><img src = "./assets/images/icon-arrow.svg" alt ="arrow button" /></span>
+  <span class="img-container"><img src = "./assets/images/icon-arrow.svg" alt ="arrow button" /></span>
+    
 
   <div class = "output">
     <h3 class = "years-output"> -- years</h3>
