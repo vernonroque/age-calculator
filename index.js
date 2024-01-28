@@ -1,23 +1,29 @@
 const calculateAge= (day,month,year) => {
+    let validDay = true;
+    let validMonth = true;
+    let validYear = true;
+
     const currentDate = new Date();
-   
     ///input validation
     if(year > currentDate.getFullYear())
-        return [1,1,false];
+        validYear = false;
     if(month < 1 || month > 12)
-        return [1,false,1];
+        validMonth = false;
     if(day < 1 || day > 32)
-        return [false,1,1];
-    if (month === 4 && day === 31 ||
-        month === 6 && day === 31 ||
-        month === 9 && day === 31 ||
-        month === 11 && day === 31||
-        month === 2 && day === 30 ||
-        month === 2 && day === 31 )
-            return [false,false,1];
-    
+        validDay = false;
+    ///strict equality operator '===' will output false if a string '04' and a number 4 are compared
+    ///equality operator '==' will output true if a string '04' and a number 4 are compared
+    if ((month == 4 || month == 6 || month == 9 || month == 11) && day == 31 ||
+        (month == 2 && day > 29)){
+            console.log("this day doesnt exist in this month");
+            validDay = false;
+            validMonth = false;
+        }
+    if(!validDay || !validMonth || !validYear)
+        return [validDay, validMonth, validYear];
+            
     //Next I have to determine what month name it is
-    let monthName = ''
+    let monthName = '';
     switch(parseInt(month)){
         case 1: 
             monthName = 'Jan';
@@ -71,55 +77,103 @@ const calculateAge= (day,month,year) => {
 
     // Calculate the difference in months and days
     const months = Math.floor(remainingMilliseconds / (1000 * 60 * 60 * 24 * (365.25 / 12)));
-    const days = Math.floor((remainingMilliseconds % (1000 * 60 * 60 * 24 * (365.25 / 12))) / (1000 * 60 * 60 * 24)) - 1;
-    
-    console.log("The years >>>", years);
-    console.log("The months >>>", months);
-    console.log("The days >>>", days);
+    const days = Math.floor((remainingMilliseconds % (1000 * 60 * 60 * 24 * (365.25 / 12))) / (1000 * 60 * 60 * 24)) -1;
 
     return [days, months, years];
 
 }
 
 const main =() => {
+    //submit functionality
     $('.img-container').on('click', ()=>{
         const dayInput = $('.day').val();
         const monthInput = $('.month').val();
         const yearInput = $('.year').val();
 
+        //checks if input fields are empty
         if(!dayInput){
              //make the border of day input red 
             //and show comment "This field is required"
             console.log("the field is required");
-            $('.day').toggleClass('error');
-            $('.day').closest('div').toggleClass('error')
+            $('.day').addClass('error');
+            $('.day').closest('div').addClass('error')
         }
            
         if(!monthInput){
              //make the border of month input red 
              //and show comment "This field is required"
             console.log("the field is required");
-            $('.month').toggleClass('error');
-            $('.month').closest('div').toggleClass('error');
+            $('.month').addClass('error');
+            $('.month').closest('div').addClass('error');
         }
            
         if(!yearInput){
              //make the border of year input red 
              //and show comment "This field is required"
             console.log("the field is required");
-            $('.year').toggleClass('error');
-            $('.year').closest('div').toggleClass('error');
+            $('.year').addClass('error');
+            $('.year').closest('div').addClass('error');
         }
            
         
         if(dayInput && monthInput && yearInput){
             const [day,month,year] = calculateAge(dayInput,monthInput,yearInput);
+        //checks if the day, month, and year are wrong inputs
+            if(!day && month){
+                $('.day').addClass('error');
+                $('.day').closest('div').addClass('invalidDay');
+            }
+            if(!day && !month){
+                $('.day').addClass('error');
+                $('.month').addClass('error');
+                $('.year').addClass('error');
+                $('.day').closest('div').addClass('invalidDate');
+            }
+            if(!month && day){
+                $('.month').addClass('error');
+                $('.month').closest('div').addClass('invalidMonth');
+            }
+            if(!year){
+                $('.year').addClass('error');
+                $('.day').closest('div').addClass('invalidYear');
+            }
+            
+            console.log("The day is >>>", day);
+            console.log("The month is >>>", month);
+            console.log("The year is >>>", year);
+
+        if(typeof(day)== "number" &&
+           typeof(month)== "number" &&
+           typeof(year)== "number"){
+            $('.years-output').html(`${year} years`);
+            $('.months-output').html(`${month} months`);
+            $('.days-output').html(`${day} days`);
+           }
 
         }
             
         $('.day').val('');
         $('.month').val('');
         $('.year').val('');
+    })
+    //reset functionality
+    $('.day').on('input',()=>{
+        $('.day').removeClass('error');
+        $('.day').closest('div').removeClass('error');
+        $('.day').closest('div').removeClass('invalidDay');
+        $('.day').closest('div').removeClass('invalidDate');
+    })
+
+    $('.month').on('input',()=>{
+        $('.month').removeClass('error');
+        $('.month').closest('div').removeClass('error');
+        $('.month').closest('div').removeClass('invalidMonth');
+    })
+
+    $('.year').on('input',()=>{
+        $('.year').removeClass('error');
+        $('.year').closest('div').removeClass('error');
+        $('.year').closest('div').removeClass('invalidYear');
     })
     
 }

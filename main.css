@@ -21,10 +21,11 @@
 .img-container:hover{
     cursor:pointer;
 }
-.month.error, .day.error, .year.error{
+.month.error, 
+.day.error, 
+.year.error{
     border:2px solid red;
     position:relative;
-    z-index:-1;
 }
 /* .month.error::after, .day.error::after, .year.error::after{
     position:absolute;
@@ -36,39 +37,63 @@
     left:0;
     z-index:1;
 } */
-form{
-    display:flex;
-}
 
 
-.date-form .day.error::after,
-.date-form .month.error::after,
-.date-form .year.error::after {
-    position: absolute;
-    content: "Field is required";
-    outline: 2px solid green;
-    width: 100%;
-    height: auto; /* Adjusted height to auto */
-    top: 100%; /* Position it below the input field */
-    left: 0;
-    color: white; /* Set a contrasting text color */
-    background-color: green; /* Set a background color */
-    display:inline-block;
-}
 .day-container, 
 .month-container, 
 .year-container{
+    position:relative;
     display:flex;
     flex-direction:column;
-    justify-content:center;
+    justify-content:flex-start;
+    align-items:flex-start;
     margin-right:5px;
-
+    height:100px;
+    flex: 5; 
+    outline:2px solid orange;
 }
+/* .day-container.error, 
+.month-container.error, 
+.year-container.error{
+
+} */
+
 .day-container.error::after,
 .month-container.error::after,
 .year-container.error::after{
+    position:absolute;
     content: "Field is required";
     color: red;
+    margin-top:5px;
+    transform:translateY(55px);
+}
+.day-container.invalidDay::after{
+    position:absolute;
+    content: "Must be a valid day";
+    color: red;
+    margin-top:5px;
+    transform:translateY(55px);
+}
+.day-container.invalidDate::after{
+    position:absolute;
+    content: "Must be a valid date";
+    color: red;
+    margin-top:5px;
+    transform:translateY(55px);
+}
+.month-container.invalidMonth::after{
+    position:absolute;
+    content: "Must be a valid month";
+    color: red;
+    transform:translateY(55px);
+    margin-top:5px;
+}
+.year-container.invalidYear::after{
+    position:absolute;
+    content: "Must be in the past";
+    color: red;
+    transform:translateY(55px);
+    margin-top:5px;
 }
 
 
@@ -84,10 +109,6 @@ img {
 
 /* I couldn't use the pseudo element with the img tag because it was 
    a self-closing tag */
-button{
-    background:none;
-    border:none;
-}
 
 .img-container::before{ 
     height: 2px;
@@ -110,16 +131,29 @@ input{
     padding:10px;
 }
 .date-form{
+    display:flex;
+    justify-content:flex-start;
     padding-top:20px;
+    margin-left:20px;
     margin-bottom:10px;
+    width:70%;
+    outline:2px solid pink;
 }
 .main-card{
     display:flex;
     justify-content:center;
     flex-direction:column;
-    align-items:center;
+    align-items:flex-start;
     margin: 0 auto;
     margin-top:60px;
+    padding-top:20px;
     outline: red 2px solid;
     width:85%;
 }
+
+
+/* @media only screen and (max-width:600px){
+    .date-form{
+        flex-direction:column;
+    }
+} */
