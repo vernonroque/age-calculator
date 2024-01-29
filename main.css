@@ -37,26 +37,22 @@
     left:0;
     z-index:1;
 } */
-
+input{
+    width:100%;
+}
 
 .day-container, 
 .month-container, 
 .year-container{
-    position:relative;
+    /* position:relative; */
     display:flex;
     flex-direction:column;
     justify-content:flex-start;
     align-items:flex-start;
-    margin-right:5px;
+    margin-right:10px;
     height:100px;
-    flex: 5; 
-    outline:2px solid orange;
+    width:100%;
 }
-/* .day-container.error, 
-.month-container.error, 
-.year-container.error{
-
-} */
 
 .day-container.error::after,
 .month-container.error::after,
@@ -95,7 +91,6 @@
     transform:translateY(55px);
     margin-top:5px;
 }
-
 
 img {
     background-color:purple;
