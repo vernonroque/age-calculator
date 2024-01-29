@@ -3,6 +3,9 @@
     padding:0;
     box-sizing:border-box;
 }
+body{
+    background-color:hsl(0, 0%, 94%);
+}
 .attribution { 
     font-size: 11px; 
     text-align: center; 
@@ -15,8 +18,9 @@
     display:grid;
     grid-template-columns: 9fr 1fr;
     column-gap:5px;
-    width:100%;
+    width:90%;
     outline: solid 2px red;
+    margin-left:40px;
 }
 .img-container:hover{
     cursor:pointer;
@@ -26,19 +30,6 @@
 .year.error{
     border:2px solid red;
     position:relative;
-}
-/* .month.error::after, .day.error::after, .year.error::after{
-    position:absolute;
-    content:"Field is required";
-    outline: 2px solid green;
-    width:100%;
-    height:50px;
-    top:0;
-    left:0;
-    z-index:1;
-} */
-input{
-    width:100%;
 }
 
 .day-container, 
@@ -61,39 +52,41 @@ input{
     content: "Field is required";
     color: red;
     margin-top:5px;
-    transform:translateY(55px);
+    transform:translateY(55px) translateX(2px);
+    outline:solid 2px blue;
+
 }
 .day-container.invalidDay::after{
     position:absolute;
     content: "Must be a valid day";
     color: red;
     margin-top:5px;
-    transform:translateY(55px);
+    transform:translateY(55px) translateX(2px);
 }
 .day-container.invalidDate::after{
     position:absolute;
     content: "Must be a valid date";
     color: red;
     margin-top:5px;
-    transform:translateY(55px);
+    transform:translateY(55px) translateX(2px);
 }
 .month-container.invalidMonth::after{
     position:absolute;
     content: "Must be a valid month";
     color: red;
-    transform:translateY(55px);
+    transform:translateY(55px) translateX(2px);
     margin-top:5px;
 }
 .year-container.invalidYear::after{
     position:absolute;
     content: "Must be in the past";
     color: red;
-    transform:translateY(55px);
+    transform:translateY(55px) translateX(2px);
     margin-top:5px;
 }
 
 img {
-    background-color:purple;
+    background-color: hsl(259, 100%, 65%);
     border-radius: 50%;
     text-align:center;
     /* margin-right:50px; */
@@ -108,28 +101,43 @@ img {
 .img-container::before{ 
     height: 2px;
     content: " ";
-    background: black;
+    background: hsl(0, 0%, 86%);
     width: 100%;
     /* left:0; */
     transform:translateY(22px);
 }
-/* .img-container::after{ 
- 
-    display:inline;
-    content: " hello";
-    background: white;
-    left:0;
-    z-index:1;
-} */
+
 
 input{
+    width:100%;
     padding:10px;
+    border:1px solid hsl(0, 0%, 86%);
+    border-radius: 5px;
+    font-family:'Poppins', Arial, Helvetica, sans-serif;
+    font-weight:bold;
+    color:hsl(0, 1%, 44%);
+}
+label{
+    color: hsl(0, 1%, 44%);
+    font-family:'Poppins',Arial, Helvetica, sans-serif;
+}
+.output{
+    margin-left:40px;
+}
+.output h3{
+    font-family:'Poppins', Arial, Helvetica, sans-serif;
+    font-weight:800;
+    font-style:italic;
+    font-size:3.5rem;
+}
+h3 span{
+    color:hsl(259, 100%, 65%);
 }
 .date-form{
     display:flex;
     justify-content:flex-start;
     padding-top:20px;
-    margin-left:20px;
+    margin-left:40px;
     margin-bottom:10px;
     width:70%;
     outline:2px solid pink;
@@ -140,15 +148,58 @@ input{
     flex-direction:column;
     align-items:flex-start;
     margin: 0 auto;
-    margin-top:60px;
+    margin-top:40px;
     padding-top:20px;
+    padding-bottom:30px;
     outline: red 2px solid;
-    width:85%;
+    background-color:white;
+    border-radius: 10px 10px 100px 10px;
+    width:50%;
 }
 
 
-/* @media only screen and (max-width:600px){
-    .date-form{
-        flex-direction:column;
+@media only screen and (max-width:602px){
+.day-container.error::after,
+.month-container.error::after,
+.year-container.error::after{
+    content: "Field \A is required";
+    white-space: pre; /* Need this line to create line break */
+}
+.day-container.invalidDay::after{
+    content: "Must be \A a valid day";
+    white-space: pre; /* Need this line to create line break */
+}
+.day-container.invalidDate::after{
+    content: "Must be \A a valid date";
+    white-space: pre; /* Need this line to create line break */
+}
+.month-container.invalidMonth::after{
+    content: "Must be \A a valid month";
+    white-space: pre; /* Need this line to create line break */
+   
+}
+.year-container.invalidYear::after{
+    content: "Must be \A in the past";
+    white-space: pre; /* Need this line to create line break */
+
+}
+
+}
+
+@media only screen and (max-width:375px){
+    .img-container {
+        display:grid;
+        grid-template-columns: 3fr 1fr 3fr;
+        column-gap:5px;
+        width:85%;
+        outline: solid 2px red;
     }
-} */
+    .img-container::after{ 
+        height: 2px;
+        content: " ";
+        background: hsl(0, 0%, 86%);
+        width: 100%;
+        transform:translateY(22px);
+    } 
+
+}

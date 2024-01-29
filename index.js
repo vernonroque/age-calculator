@@ -92,8 +92,10 @@ const main =() => {
 
         //checks if input fields are empty
         if(!dayInput){
+
              //make the border of day input red 
             //and show comment "This field is required"
+            
             console.log("the field is required");
             $('.day').addClass('error');
             $('.day').closest('div').addClass('error')
@@ -135,7 +137,7 @@ const main =() => {
             }
             if(!year){
                 $('.year').addClass('error');
-                $('.day').closest('div').addClass('invalidYear');
+                $('.year').closest('div').addClass('invalidYear');
             }
             
             console.log("The day is >>>", day);
@@ -145,9 +147,9 @@ const main =() => {
         if(typeof(day)== "number" &&
            typeof(month)== "number" &&
            typeof(year)== "number"){
-            $('.years-output').html(`${year} years`);
-            $('.months-output').html(`${month} months`);
-            $('.days-output').html(`${day} days`);
+            $('.years-span').html(`${year}`);
+            $('.months-span').html(`${month}`);
+            $('.days-span').html(`${day}`);
            }
 
         }
