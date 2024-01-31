@@ -15,16 +15,15 @@ body{
 }
 
 .img-container {
-    display:grid;
-    grid-template-columns: 9fr 1fr;
-    column-gap:5px;
+    position:relative;
+    /* display:grid;
+    grid-template-columns: 8.5fr 1.5fr; */
+    /* column-gap:5px; */
     width:90%;
-    outline: solid 2px red;
+    margin-top:10px;
     margin-left:40px;
 }
-.img-container:hover{
-    cursor:pointer;
-}
+
 .month.error, 
 .day.error, 
 .year.error{
@@ -40,7 +39,7 @@ body{
     flex-direction:column;
     justify-content:flex-start;
     align-items:flex-start;
-    margin-right:10px;
+    margin-right:20px;
     height:100px;
     width:100%;
 }
@@ -52,8 +51,7 @@ body{
     content: "Field is required";
     color: red;
     margin-top:5px;
-    transform:translateY(55px) translateX(2px);
-    outline:solid 2px blue;
+    transform:translateY(65px) translateX(2px);
 
 }
 .day-container.invalidDay::after{
@@ -61,36 +59,44 @@ body{
     content: "Must be a valid day";
     color: red;
     margin-top:5px;
-    transform:translateY(55px) translateX(2px);
+    transform:translateY(65px) translateX(2px);
 }
 .day-container.invalidDate::after{
     position:absolute;
     content: "Must be a valid date";
     color: red;
     margin-top:5px;
-    transform:translateY(55px) translateX(2px);
+    transform:translateY(65px) translateX(2px);
 }
 .month-container.invalidMonth::after{
     position:absolute;
     content: "Must be a valid month";
     color: red;
-    transform:translateY(55px) translateX(2px);
+    transform:translateY(65px) translateX(2px);
     margin-top:5px;
 }
 .year-container.invalidYear::after{
     position:absolute;
     content: "Must be in the past";
     color: red;
-    transform:translateY(55px) translateX(2px);
+    transform:translateY(65px) translateX(2px);
     margin-top:5px;
 }
 
 img {
+    position:absolute;
     background-color: hsl(259, 100%, 65%);
     border-radius: 50%;
+    padding:15px;
     text-align:center;
-    /* margin-right:50px; */
+    right:0;
+    top:0;
     z-index:10;
+    margin-right:25px;
+}
+img:hover{
+    cursor:pointer;
+    background-color:black;
 }
 /* Make sure to use pseudo elements with divs, spans, etc, 
    anything that holds content */
@@ -99,12 +105,13 @@ img {
    a self-closing tag */
 
 .img-container::before{ 
+    position:absolute;
     height: 2px;
     content: " ";
     background: hsl(0, 0%, 86%);
-    width: 100%;
-    /* left:0; */
-    transform:translateY(22px);
+    width: 90%;
+    left:0;
+    transform:translateY(35px);
 }
 
 
@@ -122,6 +129,7 @@ label{
     font-family:'Poppins',Arial, Helvetica, sans-serif;
 }
 .output{
+    margin-top:80px;
     margin-left:40px;
 }
 .output h3{
@@ -139,8 +147,7 @@ h3 span{
     padding-top:20px;
     margin-left:40px;
     margin-bottom:10px;
-    width:70%;
-    outline:2px solid pink;
+    width:80%;
 }
 .main-card{
     display:flex;
@@ -151,14 +158,13 @@ h3 span{
     margin-top:40px;
     padding-top:20px;
     padding-bottom:30px;
-    outline: red 2px solid;
     background-color:white;
     border-radius: 10px 10px 100px 10px;
     width:50%;
 }
 
 
-@media only screen and (max-width:602px){
+@media only screen and (max-width:908px){
 .day-container.error::after,
 .month-container.error::after,
 .year-container.error::after{
@@ -184,22 +190,75 @@ h3 span{
 
 }
 
+
 }
 
-@media only screen and (max-width:375px){
-    .img-container {
-        display:grid;
-        grid-template-columns: 3fr 1fr 3fr;
-        column-gap:5px;
-        width:85%;
-        outline: solid 2px red;
+@media only screen and (max-width:800px){
+
+    .main-card{
+        width:90%;
     }
+
+
+    
+    
+} 
+
+@media only screen and (max-width:375px){
+
+    .date-form{
+        display:flex;
+        justify-content:space-between;
+    
+        width:100%;
+        margin-left:0;
+        padding: 0 20px;
+    }
+    .year-container{
+        margin-right:0;
+    }
+
+    .main-card{
+        padding-top:40px;
+        width:90%;
+    }
+
+    img{
+        left:39%;
+    }
+
+    .img-container{
+        width:100%;
+        margin-left:0;
+    }
+
+    .img-container::before{
+        left:0;
+        width:45%;
+        margin-left:20px;
+    }
+
     .img-container::after{ 
+        position:absolute;
         height: 2px;
-        content: " ";
+        content: "";
         background: hsl(0, 0%, 86%);
-        width: 100%;
-        transform:translateY(22px);
+        width: 45%;
+        right:0;
+        transform:translateY(35px);
+        /* margin-left:0; */
+        margin-right:20px;
     } 
 
+    .output{
+        display:flex;
+        justify-content:flex-start;
+        flex-direction:column;
+        margin-left:20px;
+
+    }
+
+    .output h3{
+        font-size:2.5rem;
+    }
 }
