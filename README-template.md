@@ -1,6 +1,6 @@
 # Frontend Mentor - Age calculator app solution
 
-This is a solution to the [Age calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/age-calculator-app-dF9DFFpj-Q). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
+This is a solution to the [Age calculator app challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/age-calculator-app-dF9DFFpj-Q). Frontend Mentor challenges help you improve your coding skills by building realistic projects.
 
 ## Table of contents
 
@@ -41,7 +41,7 @@ Users should be able to:
 
 Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
 
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
+Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it.
 
 Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
 
@@ -60,31 +60,72 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - CSS custom properties
 - Flexbox
 - CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
+- Desktop-first workflow
+- [JQuery](https://jquery.com/) - JS library
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+1. You can't use pseudo elements with self closing tags
 
-To see how you can add code snippets, see below:
+A hard lesson I learned while building this project is that I can't use pseudo elements such as `::before` and `::after` with self closing tags. I have to use tags that can hold content.
+
+This was the reason why I couldn't use these pseudo elements with <img/> and <input/>. I had to store them in some div container lke this for <input/> and <img/> respectively:
 
 ```html
-<h1>Some HTML code I'm proud of</h1>
+<div class="day-container">
+  <label for="day">Day</label>
+  <input class="day" type="text" name="day" placeholder="DD" />
+</div>
+
+<span class="img-container"
+  ><img src="./assets/images/icon-arrow.svg" alt="arrow button"
+/></span>
 ```
+
+2. Styling pseudo elements
+
+The next tough lesson I learned was learning the best way to style these pseudo elements. I had tried using flexbox and grid. But the problem with those is that the elements would overflow out of its container.
+
+The best way to organize these pseudo elements is by just using `position:relative` and `position:absolute` and then using the attributes left,top, right, bottom. I also used `transform:translateY`
+and `transform:translateX` to position the pseudo element. Here is an example:
+
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+.img-container {
+  position: relative;
+  width: 90%;
+  margin-top: 10px;
+  margin-left: 40px;
+}
+
+.img-container::before {
+  position: absolute;
+  height: 2px;
+  content: " ";
+  background: hsl(0, 0%, 86%);
+  width: 90%;
+  left: 0;
+  transform: translateY(35px);
 }
 ```
+
+3. Splitting the content of a pseudo element on two lines:
+   In order to split the content, I had to do this:
+
+```css
+.year-container.error::after {
+  content: "Field \A is required";
+  white-space: pre; /* Need this line to create line break */
+}
+```
+
+The `\A` puts the content after it on the next line.
+The `white-space: pre` makes sure to count the white spaces as an actual white
+space and not ignore it
+
 ```js
 const proudOfThisFunc = () => {
-  console.log('🎉')
-}
+  console.log("🎉");
+};
 ```
 
 If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
